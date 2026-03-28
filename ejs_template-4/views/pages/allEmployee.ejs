@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<%- include("./../layout/header") %>
+
+    <body>
+        <div class="container my-5">
+
+            <table class="table table-striped border border-dark mt-2">
+                <h4 class="text-center">Employee List</h4>
+                <div class="d-flex justify-content-between">
+                    <span>Total employee count : <%=employees.length%> </span>
+                    <a href="employee/add" class="btn btn-info"><i class="fa-solid fa-person-circle-plus"></i> Add employee</a>
+                </div>
+                <% if(employees.length>0){
+                    let index=0;
+                    %>
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% employees.forEach(employee=>{
+                            index++;
+                            %>
+                            <tr class="text-center" style="vertical-align: middle;">
+                                <% const id=String(employee._id).slice(String(employee._id).length-6) %>
+                                    <th scope="row">
+                                        <%=index%>.
+                                    </th>
+                                    <th scope="row">
+                                        <%=id%>
+                                    </th>
+                                    <td>
+                                        <%=employee.name%>
+                                    </td>
+                                    <td style="height:80px; width:70px;">
+                                        <img class="w-100 h-100 rounded" src="/<%=employee.profile_pic%>" alt="">
+                                    </td>
+                                    <td>
+                                        <%=employee.contact.email%>
+                                    </td>
+                                    <td>
+                                        <%=employee.contact.phone%>
+                                    </td>
+                                    <td colspan="2">
+                                        <a href="/employee/update/<%=employee._id%>" class="btn btn-primary"> <i class="fa-solid fa-person-circle-question"></i> Update</a>
+                                        <a href="/employee/view/<%=employee._id%>" class="btn btn-warning"><i class="fa-solid fa-person-circle-check"></i> View</a>
+                                        <a href="/employee/delete/<%=employee._id%>" class="btn btn-danger"><i class="fa-solid fa-person-circle-xmark"></i> Delete</a>
+                                    </td>
+                            </tr>
+                    </tbody>
+                    <% }) }else{%>
+                        <p class="text-center mt-5">
+                            <i class="fa-solid fa-person-circle-exclamation"></i>
+                        <p class="text-center">No employee available</p>
+                        </p>
+                        <% }%>
+        </div>
+        </table>
+
+        <%- include("./../layout/footer") %>
+
+    </body>
+
+</html>

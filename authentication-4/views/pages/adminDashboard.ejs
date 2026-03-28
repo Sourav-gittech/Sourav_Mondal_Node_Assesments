@@ -1,0 +1,40 @@
+<%- include("./../layout/header") %>
+
+    <%- include("./../layout/navbar") %>
+
+        <div class="container mt-4">
+            <h3 class="text-danger mb-4">Admin Dashboard</h3>
+
+            <div class="card bg-dark text-light shadow">
+                <div class="card-header text-primary">
+                    User Listing
+                </div>
+
+                <table class="table table-dark table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(u=> { %>
+                            <tr>
+                                <td>
+                                    <%= u.name %>
+                                </td>
+                                <td>
+                                    <%= u.email %>
+                                </td>
+                                <td>
+                                    <%= u.role %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <%- include("./../layout/footer") %>
